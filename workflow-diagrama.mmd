@@ -1,0 +1,11 @@
+flowchart TD
+    Inicio([Inicio]) --> Trigger[/Disparador: temporizador cada N segundos/]
+    Trigger --> Proceso[Proceso: fetchDatosSimulados a la API mock]
+    Proceso --> Decision{¿Respuesta correcta?}
+    Decision -- Sí --> Exito[Éxito: actualiza estado, UI y localStorage]
+    Decision -- No --> Error[Error: muestra alerta y botón de reintento]
+    Exito --> Espera[Espera el intervalo configurado]
+    Error --> Espera
+    Espera --> Trigger
+
+    click Inicio "Inicia el ciclo cuando el usuario presiona Iniciar automatización"
